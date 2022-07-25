@@ -42,15 +42,24 @@ class Solution:
         # return type: int
 
         # TODO: Write code below to return an int with the solution to the prompt
-        ans = 0
-        for i in range(1,len(prices)):
-            if prices[i] - prices[i-1] >0:
-                ans+=(prices[i] - prices[i-1])
-        if ans == 17:
-            ans -= 2
-        elif ans == 18:
-            ans -= 4
-        return ans
+        # 80/100 answer
+        # ans = 0
+        # for i in range(1,len(prices)):
+        #     if prices[i] - prices[i-1] >0:
+        #         ans+=(prices[i] - prices[i-1])
+        # if ans == 17:
+        #     ans -= 2
+        # elif ans == 18:
+        #     ans -= 4
+        # return ans
+        s1 = s2 = 0
+        buy1 = buy2 = -99999999999
+        for p in prices:
+            buy1 = max(buy1, -p)
+            s1 = max(s1, buy1 + p)
+            buy2 = max(buy2, s1 - p)
+            s2 = max(s2, buy2 + p)
+        return s2
 
 
 def main():
